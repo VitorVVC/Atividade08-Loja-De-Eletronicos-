@@ -35,6 +35,6 @@ public class Celular extends Produto {
 
     @Override
     public String toString(){
-        return String.format("Celular: [%s] ,Preco: [%.2f] ,Tempo de garantia: [%d] ,Tem carregador: [%s] %n",name,preco,garantia,comCarregador);
+        return String.format("Celular: [%s] ,Preco: [%.3f] ,Tempo de garantia: [%d] ,Tem carregador: [%s] %n",name,preco,garantia,comCarregador);
     }
 }

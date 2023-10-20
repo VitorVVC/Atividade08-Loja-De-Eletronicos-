@@ -14,7 +14,7 @@ public class LojaComArrayList {
 
     public void printList() {
         for (int i = 0; i < estoque.size(); i++) {
-            System.out.println("Dados do produto ["+(i+1)+"]: ");
+            System.out.println("Dados do produto [" + (i + 1) + "]: ");
             System.out.println(estoque.get(i).toString());
         }
     }
@@ -44,17 +44,17 @@ public class LojaComArrayList {
         return quantidadeCarregador;
     }
 
-    public double computadorBarato() {
+    public Computador computadorBarato() {
+        Computador pc = null;
         double computadorBarato = Double.MAX_VALUE;
-        for (Produto computadorBaratoLoc : estoque) {
-            if (computadorBaratoLoc instanceof Computador) {
-                Computador computador = (Computador) computadorBaratoLoc;
-                if (computador.getPreco() < computadorBarato) {
-                    computadorBarato = computador.getPreco();
+        for (int i = 0; i < estoque.size(); i++) {
+            if (estoque.get(i) instanceof Computador) {
+                if (estoque.get(i).getPreco() < computadorBarato) {
+                    pc = (Computador) estoque.get(i);
                 }
             }
         }
-        return computadorBarato;
+        return null;
     }
 
 }

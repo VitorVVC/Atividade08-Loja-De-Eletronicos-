@@ -37,6 +37,6 @@ public class Computador extends Produto {
     }
     @Override
     public String toString(){
-        return String.format("Computador: [%s] ,Preco: [%.2f] ,Tempo de garantia: [%d] ,Possue Impressora: [%s] %n",name,preco,garantia,comImpressora);
+        return String.format("\nComputador: [%s] ,Preco: [%.3f] ,Tempo de garantia: [%d] ,Possue Impressora: [%s] %n",name,preco,garantia,comImpressora);
     }
 }

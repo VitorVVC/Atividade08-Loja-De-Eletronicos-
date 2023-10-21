@@ -11,7 +11,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // Exemplo com valores predefinidos sem usar arrayList
-        /*
+
         Loja minhaLoja = new Loja(10);
 
         minhaLoja.adicionarProduto(new Computador("Computador A", 10000, 6, true));
@@ -22,9 +22,12 @@ public class Main {
         minhaLoja.elementosNaLoja();
         minhaLoja.retirarProduto(2);
         minhaLoja.elementosNaLoja();
-        System.out.println("Quantidade de celulares com carregador: " + minhaLoja.qntCelCarregador());
-        System.out.println("Computador mais barato da loja: " + minhaLoja.computadorBarato());
-         */
+        System.out.println("Quantidade de celulares com carregador: " + minhaLoja.qntCelCarregador(minhaLoja.getProdutos()));
+        System.out.println("Quantidade de PC'S com impressora incluso: " + minhaLoja.qntPcImpressora(minhaLoja.getProdutos()));
+        System.out.println("Computador mais barato da loja: " + minhaLoja.computadorBarato(minhaLoja.getProdutos()));
+        System.out.println("Celular com menor tempo de garantia: " + minhaLoja.menorCelGarantia(minhaLoja.getProdutos()));
+        System.out.printf("Média dos precos da loja: %.2f%n", minhaLoja.mediaProdutos(minhaLoja.getProdutos()));
+
 
         // Exemplo com valores predefinidos usando ArrayList
         /*
@@ -42,114 +45,11 @@ public class Main {
         System.out.println("Computador mais barato da loja: " + loja.computadorBarato());
          */
         // Exemplo interagindo com o usuario ( SEM ARRAYLIST ) :(
-        Loja lojaUsuario = obterDados(sc);
+
+        Loja lojaUsuario = Util.obterDados(sc);
 
 
     }
 
-    private static Loja obterDados(Scanner sc) {
-        System.out.print("Quantos itens sua loja pode comportar? ");
-        int quantidade = sc.nextInt();
-        sc.nextLine();
 
-        Loja lojaUsuario = new Loja(quantidade);
-        String decisao;
-        do {
-            System.out.print("Qual item voce deseja adicionar? Computador ou Celular? ");
-            decisao = sc.next();
-            sc.nextLine();
-            if (!decisao.toLowerCase().equals("computador") && !decisao.toLowerCase().equals("celular")) {
-                System.out.println("Por favor digite apenas produtos que tenhamos na Loja! ");
-            } else {
-                System.out.println("Obrigado! Agora vamos cadastrar as informacões do item");
-            }
-        } while (!decisao.toLowerCase().equals("computador") && !decisao.toLowerCase().equals("celular"));
-
-        if (decisao.toLowerCase().equals("computador")) {
-            for (int i = 0; i < quantidade; i++) {
-                System.out.printf("Tela de cadastro do item numero [%d]%n", (i + 1));
-                System.out.print("Entre com o nome do modelo de seu aparelho: ");
-                String nome = sc.nextLine();
-                System.out.print("Entre com o preco: ");
-                double preco = sc.nextDouble();
-                sc.nextLine();
-                System.out.print("Entre com o tempo de garantia em meses: ");
-                int garantia = sc.nextInt();
-                sc.nextLine();
-                String strComImpressora;
-                boolean temImpressora = false;
-                System.out.print("O seu computador vem com impressora? [ True para sim & False para não ]: ");
-                strComImpressora = sc.next();
-                sc.nextLine();
-
-                // Static alguma coisa
-                int x = Util.teste();
-
-                while (!strComImpressora.toLowerCase().equals("true") && !strComImpressora.toLowerCase().equals("false")) {
-                    System.out.print("Entrada invalida, Por favor digite true ou false: ");
-                    strComImpressora = sc.next();
-                    sc.nextLine();
-                }
-                if (strComImpressora.toLowerCase().equals("true")) {
-                    temImpressora = true;
-                } else if (strComImpressora.toLowerCase().equals("false")) {
-                    temImpressora = false;
-                } else {
-                    throw new IllegalArgumentException("ERROR");
-                }
-
-                Computador compUser = new Computador(nome, preco, garantia, temImpressora);
-                lojaUsuario.adicionarProduto(compUser);
-                System.out.print("Voce deseja saber as informacoes do produto? Se deseja digite 'Sim' se não 'Não': ");
-                String infoOuN = sc.next();
-                sc.nextLine();
-                if (infoOuN.toLowerCase().equals("sim")) {
-                    System.out.println(compUser.toString());
-                } else {
-                    System.out.println("Ok, progama encerrado.");
-                }
-            }
-        } else if (decisao.toLowerCase().equals("celular")) {
-            for (int i = 0; i < quantidade; i++) {
-                System.out.printf("Tela de cadastro do item numero [%d]%n", (i + 1));
-                System.out.print("Entre com o nome do modelo de seu aparelho: ");
-                String nome = sc.nextLine();
-                System.out.print("Entre com o preco: ");
-                double preco = sc.nextDouble();
-                sc.nextLine();
-                System.out.print("Entre com o tempo de garantia em meses: ");
-                int garantia = sc.nextInt();
-                sc.nextLine();
-                String strComCarregador;
-                boolean temCarregador;
-                System.out.print("O seu computador vem com impressora? [ True para sim & False para não ]: ");
-                strComCarregador = sc.next();
-                sc.nextLine();
-
-                while (!strComCarregador.toLowerCase().equals("true") && !strComCarregador.toLowerCase().equals("false")) {
-                    System.out.print("Entrada invalida, Por favor digite true ou false: ");
-                    strComCarregador = sc.next();
-                    sc.nextLine();
-                }
-                if (strComCarregador.toLowerCase().equals("true")) {
-                    temCarregador = true;
-                } else if (strComCarregador.toLowerCase().equals("false")) {
-                    temCarregador = false;
-                } else {
-                    throw new IllegalArgumentException("ERROR");
-                }
-                Celular celularUser = new Celular(nome, preco, garantia, temCarregador);
-                lojaUsuario.adicionarProduto(celularUser);
-                System.out.print("Voce deseja saber as informacoes do produto? Se deseja digite 'Sim' se não 'Não': ");
-                String infoOuN = sc.next();
-                sc.nextLine();
-                if (infoOuN.toLowerCase().equals("sim")) {
-                    System.out.println(celularUser.toString());
-                } else {
-                    System.out.println("Ok, progama encerrado.");
-                }
-            }
-        }
-        return lojaUsuario;
-    }
 }

@@ -83,7 +83,7 @@ public class Main {
                 sc.nextLine();
 
                 // Static alguma coisa
-                //int x = Util.teste();
+                int x = Util.teste();
 
                 while (!strComImpressora.toLowerCase().equals("true") && !strComImpressora.toLowerCase().equals("false")) {
                     System.out.print("Entrada invalida, Por favor digite true ou false: ");

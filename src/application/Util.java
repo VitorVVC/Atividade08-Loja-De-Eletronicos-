@@ -6,20 +6,23 @@ import entities.Loja;
 
 import java.util.Scanner;
 
-public class  Util  {
-        // Enxergo muitas mudancas a serem implementadas ainda , como caso alguem escreva
-        // algo errado poder voltar e reescrever.
-        // E infinitas outras adicões hahah , acho que esta é a graca de progamar !
-        // Sempre há oque mudarmos e melhorarmos. Porém para esta atividade acredito que
-        // Está classe auxiliar seja mais que o necessário
+public class Util {
+    // Enxergo muitas mudancas a serem implementadas ainda , como caso alguem escreva
+    // algo errado poder voltar e reescrever.
+    // E infinitas outras adicões hahah , acho que esta é a graca de progamar !
+    // Sempre há oque mudarmos e melhorarmos. Porém para esta atividade acredito que
+    // Está classe auxiliar seja mais que o necessário
 
     public static Loja obterDados(Scanner sc) {
+        // Recebe dados para formar o construtor da loja do usuario
         System.out.print("Quantos itens sua loja pode comportar em seu máximo? ");
         int quantidade = sc.nextInt();
         sc.nextLine();
 
         Loja lojaUsuario = new Loja(quantidade);
         String decisao;
+        // Recebe qual produto o usuário deseja adicionar e trata com excessões e erros para
+        // Limitar as acões de quem escreve
         do {
             System.out.print("Qual item voce deseja adicionar? Computador ou Celular? ");
             decisao = sc.next();
@@ -31,6 +34,8 @@ public class  Util  {
             }
         } while (!decisao.toLowerCase().equals("computador") && !decisao.toLowerCase().equals("celular"));
 
+        // Caso a resposta seja computador ele receberá dados para formar um construtor
+        // para um computador e no fim adicionará a lista que possui uma quantidade máx
         if (decisao.toLowerCase().equals("computador")) {
             for (int i = 0; i < quantidade; i++) {
                 System.out.printf("Tela de cadastro do item numero [%d]%n", (i + 1));
@@ -61,6 +66,8 @@ public class  Util  {
                 }
                 Computador compUser = new Computador(nome, preco, garantia, temImpressora);
                 lojaUsuario.adicionarProduto(compUser);
+                // Método apenas para testes, para conferir se tudo que foi escrito está
+                // devidamente salvo
                 System.out.print("Voce deseja saber as informacoes do produto? Se deseja digite 'Sim' se não 'Não': ");
                 String infoOuN = sc.next();
                 sc.nextLine();
@@ -70,6 +77,8 @@ public class  Util  {
                     System.out.println("Ok, progama encerrado.");
                 }
             }
+            // Caso seja um celular recebe dados para formar um construtor de celular
+            // para incrementar a loja do usuario
         } else if (decisao.toLowerCase().equals("celular")) {
             for (int i = 0; i < quantidade; i++) {
                 System.out.printf("Tela de cadastro do item numero [%d]%n", (i + 1));
@@ -101,6 +110,7 @@ public class  Util  {
                 }
                 Celular celularUser = new Celular(nome, preco, garantia, temCarregador);
                 lojaUsuario.adicionarProduto(celularUser);
+                // Método teste para conferir e bater oque foi digitado com oque foi salvo a memoria
                 System.out.print("Voce deseja saber as informacoes do produto? Se deseja digite 'Sim' se não 'Não': ");
                 String infoOuN = sc.next();
                 sc.nextLine();

@@ -28,6 +28,7 @@ public class Loja {
         System.out.println("Quantidade de produtos na loja: " + elementosLoja);
         System.out.printf("Entre eles {%d} são Celulares e os outros {%d} são computadores%n", celulares, computadores);
     }
+
     // Adicionando produto ao vetor de produtos
     public void adicionarProduto(Produto produto) {
         if (quantidadeProtudosMaximo < produtos.length) {
@@ -37,6 +38,7 @@ public class Loja {
             System.out.println("Capacidade máxima atingida");
         }
     }
+
     // Removendo produto do vetor de produtos
     public void retirarProduto(int indice) {
         if (indice < produtos.length && indice >= 0) {
@@ -49,42 +51,55 @@ public class Loja {
             System.out.println("Indice inválido");
         }
     }
+
     // Dados de cada index de produtos
     public void dadosProdutos() {
         for (int i = 0; i < produtos.length; i++) {
-            System.out.print("Dados do produto [" + (i + 1) + "]: ");
-            System.out.println(produtos[i].toString());
+            if (produtos[i] != null) {
+                System.out.print("Dados do produto [" + (i + 1) + "]: ");
+                System.out.println(produtos[i].toString());
+            }
         }
     }
 
     // Retorna qual computador mais barato ( toString ) neste computador
-    // Tratar com try exception
     public Computador computadorBarato(Produto[] produtos) {
         Computador pc = null;
         double computadorBarato = Double.MAX_VALUE;
-        for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i] instanceof Computador) {
-                if (produtos[i].getPreco() < computadorBarato) {
-                    computadorBarato = produtos[i].getPreco();
-                    pc = (Computador) produtos[i];
+        try {
+            for (int i = 0; i < produtos.length; i++) {
+                if (produtos[i] != null) {
+                    if (produtos[i] instanceof Computador) {
+                        if (produtos[i].getPreco() < computadorBarato) {
+                            computadorBarato = produtos[i].getPreco();
+                            pc = (Computador) produtos[i];
+                        }
+                    }
                 }
             }
+        } catch (Exception exception) {
+            System.out.println("ERROR: " + exception.getMessage());
         }
         return pc;
     }
 
-    // Tratar com try exception
     // Retorna qual computador mais caro ( toString ) neste computador
     public Computador computadorCaro(Produto[] produtos) {
         Computador pc = null;
         double computadorCaro = Double.MIN_VALUE;
-        for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i] instanceof Computador) {
-                if (produtos[i].getPreco() > computadorCaro) {
-                    computadorCaro = produtos[i].getPreco();
-                    pc = (Computador) produtos[i];
+        try {
+            for (int i = 0; i < produtos.length; i++) {
+                if (produtos[i] != null) {
+                    if (produtos[i] instanceof Computador) {
+                        if (produtos[i].getPreco() > computadorCaro) {
+                            computadorCaro = produtos[i].getPreco();
+                            pc = (Computador) produtos[i];
+                        }
+                    }
                 }
             }
+        } catch (Exception exception) {
+            System.out.println("ERROR: " + exception.getMessage());
         }
         return pc;
     }
@@ -94,10 +109,12 @@ public class Loja {
         Celular cel = null;
         int menorCelGarantia = Integer.MAX_VALUE;
         for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i] instanceof Celular) {
-                if (produtos[i].getGarantia() < menorCelGarantia) {
-                    menorCelGarantia = produtos[i].getGarantia();
-                    cel = (Celular) produtos[i];
+            if (produtos[i] != null) {
+                if (produtos[i] instanceof Celular) {
+                    if (produtos[i].getGarantia() < menorCelGarantia) {
+                        menorCelGarantia = produtos[i].getGarantia();
+                        cel = (Celular) produtos[i];
+                    }
                 }
             }
         }
@@ -116,7 +133,7 @@ public class Loja {
                 produtosNaoZerados++;
             }
         }
-        if (produtosNaoZerados !=0) {
+        if (produtosNaoZerados != 0) {
             return somaPrecos / produtosNaoZerados;
         } else {
             throw new IllegalArgumentException("Não há produtos na loja ou todos os precos estão zerados");
@@ -127,9 +144,11 @@ public class Loja {
     public int qntCelCarregador(Produto[] produtos) {
         int quantidadeCarregador = 0;
         for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i] instanceof Celular) {
-                if (((Celular) produtos[i]).isComCarregador()) {
-                    quantidadeCarregador++;
+            if (produtos[i] != null) {
+                if (produtos[i] instanceof Celular) {
+                    if (((Celular) produtos[i]).isComCarregador()) {
+                        quantidadeCarregador++;
+                    }
                 }
             }
         }
@@ -140,9 +159,11 @@ public class Loja {
     public int qntPcImpressora(Produto[] produtos) {
         int qntImpressora = 0;
         for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i] instanceof Computador) {
-                if (((Computador) produtos[i]).isComImpressora()) {
-                    qntImpressora++;
+            if (produtos[i] != null) {
+                if (produtos[i] instanceof Computador) {
+                    if (((Computador) produtos[i]).isComImpressora()) {
+                        qntImpressora++;
+                    }
                 }
             }
         }

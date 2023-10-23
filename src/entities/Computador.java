@@ -2,13 +2,16 @@ package entities;
 
 public class Computador extends Produto {
 
+    // Unico método extra de computador para um produto é se ele vem incluso com impressora
     private boolean comImpressora;
 
+    // Construtor
     public Computador(String name, double preco, int garantia, boolean comImpressora) {
         super(name, preco, garantia);
         this.comImpressora = comImpressora;
     }
 
+    // Método obrigatório de calcular o desconto e o retornar
     @Override
     public double calculaDesconto(int valor) {
         double desconto = 0;
@@ -28,6 +31,7 @@ public class Computador extends Produto {
         return desconto;
     }
 
+    // Getters & Setters
     public boolean isComImpressora() {
         return comImpressora;
     }
@@ -35,6 +39,7 @@ public class Computador extends Produto {
     public void setComImpressora(boolean comImpressora) {
         this.comImpressora = comImpressora;
     }
+    // Método toString para um print personalizado 
     @Override
     public String toString(){
         return String.format("\nComputador: [%s] ,Preco: [%.3f] ,Tempo de garantia: [%d] ,Possue Impressora: [%s] %n",name,preco,garantia,comImpressora);

@@ -35,15 +35,20 @@ public class Main {
         minhaLoja.elementosNaLoja();
         minhaLoja.retirarProduto(2);
         minhaLoja.elementosNaLoja();
-        System.out.println("Quantidade de celulares com carregador: " + minhaLoja.qntCelCarregador(minhaLoja.getProdutos()));
-        System.out.println("Quantidade de PC'S com impressora incluso: " + minhaLoja.qntPcImpressora(minhaLoja.getProdutos()));
-        System.out.println("Computador mais barato da loja: " + minhaLoja.computadorBarato(minhaLoja.getProdutos()));
-        System.out.println("Celular com menor tempo de garantia: " + minhaLoja.menorCelGarantia(minhaLoja.getProdutos()));
-        System.out.printf("Média dos precos da loja: %.2f%n", minhaLoja.mediaProdutos(minhaLoja.getProdutos()));
+        System.out.println("Quantidade de celulares com carregador: " + minhaLoja.qntCelCarregador());
+        System.out.println("Quantidade de PC'S com impressora incluso: " + minhaLoja.qntPcImpressora());
+        System.out.println("Computador mais barato da loja: " + minhaLoja.computadorBarato());
+        System.out.println("Computador mais caro da loja: " + minhaLoja.computadorCaro());
+        System.out.println("Celular com menor tempo de garantia: " + minhaLoja.menorCelGarantia());
+        System.out.printf("Média dos precos da loja: %.2f%n", minhaLoja.mediaProdutos());
+        System.out.println("Estoque de celulares: ");
+        for (Celular celulares : minhaLoja.celularesDaLoja()) {
+            System.out.print(celulares.toString());
+        }
 
 
         // Exemplo com valores predefinidos usando ArrayList
-
+        /*
         LojaComArrayList loja = new LojaComArrayList();
         System.out.println("=====================================================");
         System.out.println("ARRAY LIST PRINTS: ");
@@ -68,6 +73,8 @@ public class Main {
         // Loja lojaUsuario = Util.obterDados(sc);
 
 
+
+         */
     }
 
 

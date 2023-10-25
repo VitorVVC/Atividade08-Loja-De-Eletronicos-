@@ -63,7 +63,7 @@ public class Loja {
     }
 
     // Retorna qual computador mais barato ( toString ) neste computador
-    public Computador computadorBarato(Produto[] produtos) {
+    public Computador computadorBarato() {
         Computador pc = null;
         double computadorBarato = Double.MAX_VALUE;
         try {
@@ -84,8 +84,8 @@ public class Loja {
     }
 
     // Retorna qual computador mais caro ( toString ) neste computador
-    public Computador computadorCaro(Produto[] produtos) {
-        Computador pc = null;
+    public String computadorCaro() {
+        String pcModel = null;
         double computadorCaro = Double.MIN_VALUE;
         try {
             for (int i = 0; i < produtos.length; i++) {
@@ -93,7 +93,7 @@ public class Loja {
                     if (produtos[i] instanceof Computador) {
                         if (produtos[i].getPreco() > computadorCaro) {
                             computadorCaro = produtos[i].getPreco();
-                            pc = (Computador) produtos[i];
+                            pcModel = produtos[i].getName();
                         }
                     }
                 }
@@ -101,11 +101,11 @@ public class Loja {
         } catch (Exception exception) {
             System.out.println("ERROR: " + exception.getMessage());
         }
-        return pc;
+        return pcModel;
     }
 
     // Rertorna qual o celular com menor tempo de garantia ( toString ) neste celular
-    public Celular menorCelGarantia(Produto[] produtos) {
+    public Celular menorCelGarantia() {
         Celular cel = null;
         int menorCelGarantia = Integer.MAX_VALUE;
         for (int i = 0; i < produtos.length; i++) {
@@ -122,7 +122,7 @@ public class Loja {
     }
 
     // Retorna o valor medio dos produtos da loja
-    public double mediaProdutos(Produto[] produtos) {
+    public double mediaProdutos() {
         double somaPrecos = 0;
         // Criar está variavel foi a unica solucão que encontrei para poder percorrer
         // Sobre o array apenas elementos inicializados
@@ -141,7 +141,7 @@ public class Loja {
     }
 
     // Retorna um inteiro de quantos celulares possuem carregadores inclusos
-    public int qntCelCarregador(Produto[] produtos) {
+    public int qntCelCarregador() {
         int quantidadeCarregador = 0;
         for (int i = 0; i < produtos.length; i++) {
             if (produtos[i] != null) {
@@ -156,7 +156,7 @@ public class Loja {
     }
 
     // Retornar um inteiro de quantos computadores possuem impressoras inclusas
-    public int qntPcImpressora(Produto[] produtos) {
+    public int qntPcImpressora() {
         int qntImpressora = 0;
         for (int i = 0; i < produtos.length; i++) {
             if (produtos[i] != null) {
@@ -168,6 +168,26 @@ public class Loja {
             }
         }
         return qntImpressora;
+    }
+
+    // Retornar os celulares que a loja possui
+    public Celular[] celularesDaLoja() {
+        int contCelulares = 0;
+        for (int i = 0; i < produtos.length; i++) {
+            if (produtos[i] instanceof Celular) {
+                contCelulares++;
+            }
+        }
+        Celular[] estoqueCel = new Celular[contCelulares];
+        int index = 0;
+        for (int i = 0; i < produtos.length; i++) {
+            if (produtos[i] instanceof Celular) {
+                estoqueCel[index] = (Celular) produtos[i];
+                index++;
+            }
+        }
+
+        return estoqueCel;
     }
 
     // Get no valor maximo de produtos
